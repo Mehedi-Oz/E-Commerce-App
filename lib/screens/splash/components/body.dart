@@ -3,6 +3,7 @@ import 'package:sampleproject/constants.dart';
 import 'package:sampleproject/size_config.dart';
 
 import '../components/splash_content.dart';
+import '../../../components/default_button.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -49,17 +50,27 @@ class _BodyState extends State<Body> {
             ),
             Expanded(
               flex: 2,
-              child: Column(
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                      splashData.length,
-                      (index) => buildDot(index: index),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: getProportionateScreenWidth(20)),
+                child: Column(
+                  children: <Widget>[
+                    Spacer(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(
+                        splashData.length,
+                        (index) => buildDot(index: index),
+                      ),
                     ),
-                  ),
-                  // buildDot(),
-                ],
+                    Spacer(flex: 2),
+                    DefaultButton(
+                      text: "Continue",
+                      press: () {},
+                    ),
+                    Spacer(),
+                  ],
+                ),
               ),
             ),
           ],
