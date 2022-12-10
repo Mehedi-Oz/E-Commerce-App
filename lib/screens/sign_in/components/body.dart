@@ -77,6 +77,18 @@ class _SignFormState extends State<SignForm> {
   TextFormField buildPasswordFormFiled() {
     return TextFormField(
       obscureText: true,
+      validator: ((value) {
+        if (value!.isEmpty && errors.contains(kPassNullError)) {
+          setState(() {
+            errors.add(kPassNullError);
+          });
+        } else if (value.length < 8 && !errors.contains(kShortPassError)) {
+          setState(() {
+            errors.add(kShortPassError);
+          });
+        }
+        return null;
+      }),
       decoration: InputDecoration(
         labelText: "Password",
         hintText: "Enter your Password",
@@ -91,10 +103,28 @@ class _SignFormState extends State<SignForm> {
   TextFormField buildEmailFormFiled() {
     return TextFormField(
       keyboardType: TextInputType.emailAddress,
-      validator: ((value) {
-        if (value!.isEmpty) {
+      onChanged: (value) {
+        if (value.isNotEmpty && errors.contains(kEmailNullError)) {
           setState(() {
-            errors.add("Please enter a valid Email!");
+            errors.remove(kEmailNullError);
+          });
+        } else if (emailValidatorRegExp.hasMatch(value) &&
+            errors.contains(kInvalidEmailError)) {
+          setState(() {
+            errors.remove(kInvalidEmailError);
+          });
+        }
+        return null;
+      },
+      validator: ((value) {
+        if (value!.isEmpty && errors.contains(kEmailNullError)) {
+          setState(() {
+            errors.add(kEmailNullError);
+          });
+        } else if (!emailValidatorRegExp.hasMatch(value) &&
+            !errors.contains(kInvalidEmailError)) {
+          setState(() {
+            errors.add(kInvalidEmailError);
           });
         }
         return null;
