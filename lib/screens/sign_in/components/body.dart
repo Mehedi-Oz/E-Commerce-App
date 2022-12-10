@@ -3,8 +3,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sampleproject/components/custom_sufix_icon.dart';
 import 'package:sampleproject/components/default_button.dart';
 import 'package:sampleproject/components/form_error.dart';
+import 'package:sampleproject/components/no_account_text.dart';
 import 'package:sampleproject/components/socal_card.dart';
 import 'package:sampleproject/constants.dart';
+import 'package:sampleproject/screens/forgot_password/forgot_password_scrren.dart';
 import 'package:sampleproject/size_config.dart';
 
 import 'sign_form.dart';
@@ -63,22 +65,7 @@ class Body extends StatelessWidget {
                 SizedBox(
                   height: SizeConfig.screenHeight * 0.01,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Don't have a account?",
-                      style:
-                          TextStyle(fontSize: getProportionateScreenWidth(16)),
-                    ),
-                    Text(
-                      "Sign up",
-                      style: TextStyle(
-                          fontSize: getProportionateScreenWidth(16),
-                          color: kPrimaryColor),
-                    ),
-                  ],
-                ),
+                NoAccountText(),
               ],
             ),
           ),
