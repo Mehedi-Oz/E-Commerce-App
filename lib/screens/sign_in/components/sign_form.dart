@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sampleproject/components/custom_sufix_icon.dart';
 import 'package:sampleproject/components/form_error.dart';
+import 'package:sampleproject/screens/login_success/login_sucess_screen.dart';
 
 import '../../../components/default_button.dart';
 import '../../../constants.dart';
@@ -54,6 +55,8 @@ class _SignFormState extends State<SignForm> {
             press: () {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState?.save();
+                // if all are valid will go to Sucess page
+                Navigator.pushNamed(context, LoginSucessScreen.routeName);
               }
             },
           )
@@ -83,10 +86,12 @@ class _SignFormState extends State<SignForm> {
           setState(() {
             errors.add(kPassNullError);
           });
+          return "";
         } else if (value.length < 8 && !errors.contains(kShortPassError)) {
           setState(() {
             errors.add(kShortPassError);
           });
+          return "";
         }
         return null;
       }),
