@@ -45,6 +45,10 @@ class SignForm extends StatefulWidget {
 
 class _SignFormState extends State<SignForm> {
   final _formKey = GlobalKey<FormState>();
+  late String email;
+  late String password;
+  late bool remember = false;
+
   final List<String> errors = [];
   @override
   Widget build(BuildContext context) {
@@ -53,14 +57,30 @@ class _SignFormState extends State<SignForm> {
       child: Column(
         children: [
           buildEmailFormFiled(),
-          SizedBox(
-            height: getProportionateScreenHeight(20),
-          ),
+          SizedBox(height: getProportionateScreenHeight(20)),
           buildPasswordFormFiled(),
-          SizedBox(
-            height: getProportionateScreenHeight(20),
+          SizedBox(height: getProportionateScreenHeight(20)),
+          Row(
+            children: [
+              Checkbox(
+                value: remember,
+                activeColor: kPrimaryColor,
+                onChanged: ((value) {
+                  setState(() {
+                    remember = value!;
+                  });
+                }),
+              ),
+              Text("Remember Me"),
+              Spacer(),
+              Text(
+                "Forget Password?",
+                style: TextStyle(decoration: TextDecoration.underline),
+              )
+            ],
           ),
           FormError(errors: errors),
+          SizedBox(height: getProportionateScreenHeight(20)),
           DefaultButton(
             text: "Continue",
             press: () {
@@ -77,6 +97,7 @@ class _SignFormState extends State<SignForm> {
   TextFormField buildPasswordFormFiled() {
     return TextFormField(
       obscureText: true,
+      onSaved: (newValue) => password = newValue!,
       onChanged: (value) {
         if (value.isNotEmpty && errors.contains(kPassNullError)) {
           setState(() {
@@ -90,7 +111,7 @@ class _SignFormState extends State<SignForm> {
         return null;
       },
       validator: ((value) {
-        if (value!.isEmpty && errors.contains(kPassNullError)) {
+        if (value!.isNotEmpty && errors.contains(kPassNullError)) {
           setState(() {
             errors.add(kPassNullError);
           });
@@ -115,6 +136,7 @@ class _SignFormState extends State<SignForm> {
   TextFormField buildEmailFormFiled() {
     return TextFormField(
       keyboardType: TextInputType.emailAddress,
+      onSaved: (newValue) => email = newValue!,
       onChanged: (value) {
         if (value.isNotEmpty && errors.contains(kEmailNullError)) {
           setState(() {
