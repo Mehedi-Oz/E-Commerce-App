@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sampleproject/constants.dart';
+import 'package:sampleproject/screens/complete_profile/complete_profile_screen.dart';
 
 import '../../../components/custom_sufix_icon.dart';
 import '../../../components/default_button.dart';
@@ -44,11 +45,9 @@ class _SignUpFormState extends State<SignUpForm> {
             press: () {
               if (_formKey.currentState!.validate()) {
                 //go to complete profile page
+                Navigator.pushNamed(context, CompleteProfileScreen.routeName);
               }
             },
-          ),
-          SizedBox(
-            height: getProportionateScreenHeight(40),
           ),
         ],
       ),
@@ -72,13 +71,12 @@ class _SignUpFormState extends State<SignUpForm> {
           setState(() {
             errors.add(kPassNullError);
           });
-          return "";
-        } else if (password != confirm_password &&
-            !errors.contains(kShortPassError)) {
+          //return "";
+        } else if (password != value && !errors.contains(kShortPassError)) {
           setState(() {
             errors.add(kMatchPassError);
           });
-          // return "";
+          //return "";
         }
         return null;
       }),
@@ -115,12 +113,12 @@ class _SignUpFormState extends State<SignUpForm> {
           setState(() {
             errors.add(kPassNullError);
           });
-          // return "";
+          //return "";
         } else if (value.length < 8 && !errors.contains(kShortPassError)) {
           setState(() {
             errors.add(kShortPassError);
           });
-          // return "";
+          //return "";
         }
         return null;
       }),

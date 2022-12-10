@@ -28,3 +28,8 @@ const String kInvalidEmailError = "Enter a valid Email";
 const String kPassNullError = "Please enter your Password";
 const String kShortPassError = "Password is too short";
 const String kMatchPassError = "PAssword don't match";
+// ignore: constant_identifier_names
+const String KNamelNullError = "Please Enter Your Name";
+// ignore: constant_identifier_names
+const String KPhoneNumberNullError = "Please Enter Your Phone Number";
+const String KAddressNullError = "Please Enter Your Address";
