@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:sampleproject/constants.dart';
-import 'package:sampleproject/routs.dart';
-import 'package:sampleproject/screens/splash/splash_screen.dart';
-import 'package:sampleproject/theme.dart';
+import 'package:shop_app/routes.dart';
+import 'package:shop_app/screens/profile/profile_screen.dart';
+import 'package:shop_app/screens/splash/splash_screen.dart';
+import 'package:shop_app/theme.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -19,6 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: theme(),
       // home: SplashScreen(),
+      // We use routeName so that we dont need to remember the name
       initialRoute: SplashScreen.routeName,
       routes: routes,
     );
