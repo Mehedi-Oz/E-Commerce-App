@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:sampleproject/constants.dart';
-import 'package:sampleproject/screens/sign_in/sign_in_scrren.dart';
-import 'package:sampleproject/size_config.dart';
+import 'package:shop_app/constants.dart';
+import 'package:shop_app/screens/sign_in/sign_in_screen.dart';
+import 'package:shop_app/size_config.dart';
 
+// This is the best practice
 import '../components/splash_content.dart';
 import '../../../components/default_button.dart';
 
@@ -15,16 +16,17 @@ class _BodyState extends State<Body> {
   int currentPage = 0;
   List<Map<String, String>> splashData = [
     {
-      "image": "assets/images/splash_1.png",
-      "text": "Welcome to Space! Let's Shop!"
+      "text": "Welcome to Shopify, Let’s shop!",
+      "image": "assets/images/splash_1.png"
     },
     {
-      "image": "assets/images/splash_2.png",
-      "text": "Welcome to Space! Let's Shop!"
+      "text":
+          "We help people to connect with our online store \n  all around Bangladesh",
+      "image": "assets/images/splash_2.png"
     },
     {
-      "image": "assets/images/splash_3.png",
-      "text": "Welcome to Space! Let's Shop!"
+      "text": "We show the easy way to shop. \nJust stay at home with us",
+      "image": "assets/images/splash_3.png"
     },
   ];
   @override
@@ -43,9 +45,9 @@ class _BodyState extends State<Body> {
                   });
                 },
                 itemCount: splashData.length,
-                itemBuilder: (context, index) => SplashContant(
-                  image: "assets/images/splash_1.png",
-                  text: "Welcome to Space! Let's Shop!",
+                itemBuilder: (context, index) => SplashContent(
+                  image: splashData[index]["image"],
+                  text: splashData[index]['text'],
                 ),
               ),
             ),
@@ -64,7 +66,7 @@ class _BodyState extends State<Body> {
                         (index) => buildDot(index: index),
                       ),
                     ),
-                    Spacer(flex: 2),
+                    Spacer(flex: 3),
                     DefaultButton(
                       text: "Continue",
                       press: () {
@@ -82,7 +84,7 @@ class _BodyState extends State<Body> {
     );
   }
 
-  AnimatedContainer buildDot({required int index}) {
+  AnimatedContainer buildDot({int? index}) {
     return AnimatedContainer(
       duration: kAnimationDuration,
       margin: EdgeInsets.only(right: 5),

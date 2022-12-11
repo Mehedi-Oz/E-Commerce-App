@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
-class SplashContant extends StatelessWidget {
-  const SplashContant({
+class SplashContent extends StatelessWidget {
+  const SplashContent({
     Key? key,
-    required this.text,
-    required this.image,
+    this.text,
+    this.image,
   }) : super(key: key);
-  final String text, image;
+  final String? text, image;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class SplashContant extends StatelessWidget {
       children: <Widget>[
         Spacer(),
         Text(
-          "Space",
+          "SHOPIFY",
           style: TextStyle(
             fontSize: getProportionateScreenWidth(36),
             color: kPrimaryColor,
@@ -25,12 +25,12 @@ class SplashContant extends StatelessWidget {
           ),
         ),
         Text(
-          text,
+          text!,
           textAlign: TextAlign.center,
         ),
         Spacer(flex: 2),
         Image.asset(
-          image,
+          image!,
           height: getProportionateScreenHeight(265),
           width: getProportionateScreenWidth(235),
         ),
