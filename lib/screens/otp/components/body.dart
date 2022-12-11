@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:sampleproject/components/default_button.dart';
-import 'package:sampleproject/constants.dart';
-import 'package:sampleproject/screens/otp/components/otp_form.dart';
-import 'package:sampleproject/size_config.dart';
+import 'package:shop_app/constants.dart';
+import 'package:shop_app/size_config.dart';
+
+import 'otp_form.dart';
 
 class Body extends StatelessWidget {
-  const Body({super.key});
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -22,20 +20,19 @@ class Body extends StatelessWidget {
                 "OTP Verification",
                 style: headingStyle,
               ),
-              Text("We Have Sent Your Code to +1234566"),
+              Text("We sent your code to +1 898 860 ***"),
               buildTimer(),
-              SizedBox(height: SizeConfig.screenHeight * 0.15),
               OtpForm(),
               SizedBox(height: SizeConfig.screenHeight * 0.1),
               GestureDetector(
                 onTap: () {
-                  //resend OTP
+                  // OTP code resend
                 },
                 child: Text(
-                  "Rsend OTP Code",
+                  "Resend OTP Code",
                   style: TextStyle(decoration: TextDecoration.underline),
                 ),
-              ),
+              )
             ],
           ),
         ),
@@ -47,15 +44,14 @@ class Body extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("This Code Will Expire in"),
+        Text("This code will expired in "),
         TweenAnimationBuilder(
-          tween: Tween(begin: 30.0, end: 0),
+          tween: Tween(begin: 30.0, end: 0.0),
           duration: Duration(seconds: 30),
-          builder: ((context, value, child) => Text(
-                "00:${value.toInt()}",
-                style: TextStyle(color: kPrimaryColor),
-              )),
-          onEnd: () {},
+          builder: (_, dynamic value, child) => Text(
+            "00:${value.toInt()}",
+            style: TextStyle(color: kPrimaryColor),
+          ),
         ),
       ],
     );
