@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sampleproject/screens/login_sucess/components/body.dart';
+import 'package:sampleproject/screens/complete_profile/components/body.dart';
 
 class CompleteProfileScreen extends StatelessWidget {
   const CompleteProfileScreen({super.key});
